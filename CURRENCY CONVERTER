@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Available Currencies:");
+        System.out.println("1. USD");
+        System.out.println("2. INR");
+        System.out.println("3. EUR");
+        System.out.println("4. GBP");
+
+        System.out.print("Choose base currency (1-4): ");
+        int base = sc.nextInt();
+
+        System.out.print("Choose target currency (1-4): ");
+        int target = sc.nextInt();
+
+        System.out.print("Enter amount to convert: ");
+        double amount = sc.nextDouble();
+
+        // Conversion rates (approximate)
+        double usd = 1.0;
+        double inr = 83.0;
+        double eur = 0.92;
+        double gbp = 0.78;
+
+        // Convert base to USD
+        double amountInUSD = 0;
+
+        switch (base) {
+            case 1: amountInUSD = amount / usd; break;
+            case 2: amountInUSD = amount / inr; break;
+            case 3: amountInUSD = amount / eur; break;
+            case 4: amountInUSD = amount / gbp; break;
+            default:
+                System.out.println("Invalid base currency!");
+                return;
+        }
+
+        // Convert USD to target
+        double convertedAmount = 0;
+        String targetCurrency = "";
+
+        switch (target) {
+            case 1:
+                convertedAmount = amountInUSD * usd;
+                targetCurrency = "USD";
+                break;
+            case 2:
+                convertedAmount = amountInUSD * inr;
+                targetCurrency = "INR";
+                break;
+            case 3:
+                convertedAmount = amountInUSD * eur;
+                targetCurrency = "EUR";
+                break;
+            case 4:
+                convertedAmount = amountInUSD * gbp;
+                targetCurrency = "GBP";
+                break;
+            default:
+                System.out.println("Invalid target currency!");
+                return;
+        }
+
+        System.out.println("\nConverted Amount: " + convertedAmount + " " + targetCurrency);
+
+        sc.close();
+    }
+}
